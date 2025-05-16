@@ -1,5 +1,3 @@
-Sure! Here's a simple `README.md` file you can use for your Python scraper project:
-
 # HT Consumer Data Scraper
 
 This Python script scrapes consumer data from the Tamil Nadu Electricity Board website for consumer numbers ranging from 0001 to 9999. The data is saved into an Excel file named `consumer_data.xlsx`.
