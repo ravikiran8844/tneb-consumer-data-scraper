@@ -39,50 +39,50 @@ async def scrape():
                 await page.goto(url, wait_until="networkidle")
 
                 # Click district label and option
-                await page.click('#j_idt6\\:district_label')
-                await page.wait_for_selector('#j_idt6\\:district_1')
-                await page.click('#j_idt6\\:district_1')
+                await page.click('#j_idt5\\:district_label')
+                await page.wait_for_selector('#j_idt5\\:district_1')
+                await page.click('#j_idt5\\:district_1')
 
                 # Click section label and option
-                await page.click('#j_idt6\\:section_label')
-                await page.wait_for_selector('#j_idt6\\:section_1')
-                await page.click('#j_idt6\\:section_1')
+                await page.click('#j_idt5\\:section_label')
+                await page.wait_for_selector('#j_idt5\\:section_1')
+                await page.click('#j_idt5\\:section_1')
 
                 # Set consumer number input value
-                await page.fill('#j_idt6\\:scno', consumer_no)
+                await page.fill('#j_idt5\\:scno', consumer_no)
 
                 # Submit the form
-                await page.click('#j_idt6\\:submit1')
+                await page.click('#j_idt5\\:submit1')
 
                 # Wait for results table to load (timeout 10 sec)
-                await page.wait_for_selector('#j_idt6\\:panel_content > table', timeout=10000)
+                await page.wait_for_selector('#j_idt5\\:panel_content > table', timeout=10000)
 
                 # Extract data using page.eval_on_selector (JS in the browser context)
                 consumer_name = await page.eval_on_selector(
-                    '#j_idt6\\:panel_content > table > tbody > tr:nth-child(1) > td:nth-child(2) > label',
+                    '#j_idt5\\:panel_content > table > tbody > tr:nth-child(1) > td:nth-child(2) > label',
                     'el => el.textContent.trim()'
                 )
                 address = await page.eval_on_selector(
-                    '#j_idt6\\:panel_content > table > tbody > tr:nth-child(2) > td:nth-child(2) > label',
+                    '#j_idt5\\:panel_content > table > tbody > tr:nth-child(2) > td:nth-child(2) > label',
                     'el => el.textContent.trim()'
                 )
                 sanctioned_load = await page.eval_on_selector(
-                    '#j_idt6\\:panel_content > table > tbody > tr:nth-child(3) > td:nth-child(2) > label',
+                    '#j_idt5\\:panel_content > table > tbody > tr:nth-child(3) > td:nth-child(2) > label',
                     'el => el.textContent.trim()'
                 )
                 tariff_details = await page.eval_on_selector(
-                    '#j_idt6\\:panel_content > table > tbody > tr:nth-child(4) > td:nth-child(2) > label',
+                    '#j_idt5\\:panel_content > table > tbody > tr:nth-child(4) > td:nth-child(2) > label',
                     'el => el.textContent.trim()'
                 )
                 # Service Effected Date selector fallback span or label
                 service_effected_date = await page.eval_on_selector(
-                    '#j_idt6\\:panel_content > table > tbody > tr:nth-child(5) > td:nth-child(2) > span',
+                    '#j_idt5\\:panel_content > table > tbody > tr:nth-child(5) > td:nth-child(2) > span',
                     'el => el.textContent.trim()',
                     strict=False
                 )
                 if not service_effected_date:
                     service_effected_date = await page.eval_on_selector(
-                        '#j_idt6\\:panel_content > table > tbody > tr:nth-child(5) > td:nth-child(2) > label',
+                        '#j_idt5\\:panel_content > table > tbody > tr:nth-child(5) > td:nth-child(2) > label',
                         'el => el.textContent.trim()',
                         strict=False
                     )
